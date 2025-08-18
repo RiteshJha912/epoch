@@ -29,18 +29,19 @@ export default function Login() {
         {/* Hero Section */}
         <div className='hero-section'>
           <h1 className='hero-title'>
-            Build habits that
+            Epoch: Build habits that
             <br />
             <span style={{ color: '#238636' }}>actually stick</span>
           </h1>
           <p className='hero-subtitle'>
             Track your daily progress with a beautiful, GitHub-inspired
-            interface
+            interface.
           </p>
           <p className='hero-description'>
-            Join thousands of people who have successfully built lasting habits
-            using our simple, science-backed approach. No streaks to break, just
-            consistent progress.
+            We tap into the psychology of habit building,
+            giving you a beautiful visualization of your progress, much like a
+            contributions graph. This visual momentum helps you stay on
+            track and see your growth over time.
           </p>
 
           {error && (
@@ -111,38 +112,8 @@ export default function Login() {
               marginBottom: '60px',
             }}
           >
-            Free to use • No credit card required
+            Free to use • Open source • No ads
           </p>
-        </div>
-
-        {/* Features Section */}
-        <div className='features-grid'>
-          <div className='feature-card'>
-            <div className='feature-icon'>📊</div>
-            <h3 className='feature-title'>Visual Progress Tracking</h3>
-            <p className='feature-description'>
-              See your progress at a glance with our GitHub-inspired
-              contribution grid. Every completed day adds to your momentum.
-            </p>
-          </div>
-
-          <div className='feature-card'>
-            <div className='feature-icon'>🎯</div>
-            <h3 className='feature-title'>Science-Based Approach</h3>
-            <p className='feature-description'>
-              Choose from 1, 2, or 3-week cycles based on habit formation
-              research. Start small, build consistency.
-            </p>
-          </div>
-
-          <div className='feature-card'>
-            <div className='feature-icon'>🏆</div>
-            <h3 className='feature-title'>Celebrate Success</h3>
-            <p className='feature-description'>
-              Get personalized celebrations when you complete habits.
-              Recognition that motivates continued growth.
-            </p>
-          </div>
         </div>
 
         {/* Stats Section */}

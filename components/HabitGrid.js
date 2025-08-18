@@ -1,35 +1,80 @@
+/* components/HabitGrid.js */
 import { isToday, canMarkToday, formatDate, getDayStatus } from '../lib/utils'
 
-export default function HabitGrid({ habit, onDayClick }) {
+const getCelebrationMessage = (completedDays, totalDays) => {
+  const completionPercentage = Math.round((completedDays / totalDays) * 100)
+
+  if (completedDays === totalDays) {
+    return {
+      title: 'Incredible work! 🎉',
+      message:
+        "You've successfully completed this habit with a perfect streak! This is a testament to your amazing discipline.",
+      emoji: '🔥',
+      isPerfect: true,
+    }
+  } else if (completedDays > 0) {
+    return {
+      title: 'Keep up the great work! ',
+      message: `You completed ${completedDays} out of ${totalDays} days. That's ${completionPercentage}%! Every completed day is a step toward your goal.`,
+      emoji: '🙌',
+      isPerfect: false,
+    }
+  }
+  return null 
+}
+
+export default function HabitGrid({ habit, onDayClick, onDelete }) {
   const totalDays = habit.days.length
   const completedDays = habit.days.filter((day) => day.completed).length
-  const isCompleted = completedDays === totalDays
+  const habitFinished = habit.days[totalDays - 1].date < formatDate(new Date())
 
   const gridClass =
     totalDays <= 7 ? 'grid-7' : totalDays <= 14 ? 'grid-14' : 'grid-21'
+
+  const celebrationMessage = habitFinished
+    ? getCelebrationMessage(completedDays, totalDays)
+    : null
 
   return (
     <div className='habit-card glass'>
       <div className='habit-header'>
         <h3 className='habit-title'>{habit.name}</h3>
-        <div className='progress-text'>
-          {completedDays}/{totalDays} days •{' '}
-          {Math.round((completedDays / totalDays) * 100)}% complete
-        </div>
+        <button className='btn-delete' onClick={() => onDelete(habit.id)}>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='16'
+            height='16'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            className='lucide lucide-trash'
+          >
+            <path d='M3 6h18'></path>
+            <path d='M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6'></path>
+            <path d='M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2'></path>
+          </svg>
+        </button>
+      </div>
+      <div className='progress-text'>
+        {completedDays}/{totalDays} days •{' '}
+        {Math.round((completedDays / totalDays) * 100)}% complete
       </div>
 
-      {isCompleted && (
+      {celebrationMessage && (
         <div className='success-message'>
-          <div style={{ fontSize: '32px', marginBottom: '12px' }}>🎉</div>
+          <div style={{ fontSize: '32px', marginBottom: '12px' }}>
+            {celebrationMessage.isPerfect ? '🎉' : '👏'}
+          </div>
           <h3
             style={{ marginBottom: '8px', fontSize: '20px', fontWeight: '700' }}
           >
-            Incredible work!
+            {celebrationMessage.title}
           </h3>
           <p style={{ margin: 0, fontSize: '16px' }}>
-            You've successfully completed "{habit.name}"! You're building the
-            discipline that creates lasting change. Ready for your next
-            challenge?
+            {celebrationMessage.message}
           </p>
         </div>
       )}
@@ -82,7 +127,7 @@ export default function HabitGrid({ habit, onDayClick }) {
         {completedDays === 0
           ? "Start your journey today! Click on today's square to mark it complete."
           : completedDays === totalDays
-          ? "🔥 Perfect completion! You've mastered this habit."
+          ? " Perfect! You've successfully completed the challenge"
           : `Keep it up! ${totalDays - completedDays} more days to go.`}
       </p>
     </div>

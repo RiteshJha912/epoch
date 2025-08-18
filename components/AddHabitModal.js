@@ -83,13 +83,13 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
               onChange={(e) => setDuration(e.target.value)}
             >
               <option value='1week'>
-                1 Week (7 days) - Great for trying new things
+                1 Week (7 days)
               </option>
               <option value='2weeks'>
-                2 Weeks (14 days) - Build some momentum
+                2 Weeks (14 days)
               </option>
               <option value='3weeks'>
-                3 Weeks (21 days) - Form a solid foundation
+                3 Weeks (21 days)
               </option>
             </select>
             <small
@@ -120,7 +120,7 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
               Maybe later
             </button>
             <button type='submit' className='btn btn-primary'>
-              Let's do this! 🚀
+              Let's do this! 
             </button>
           </div>
         </form>

@@ -112,7 +112,7 @@ export default function Layout({ children }) {
                     margin: 0,
                   }}
                 >
-                  Every small step creates lasting change
+                  Repetition is the syntax of becoming
                 </p>
               </div>
               <div
@@ -149,7 +149,7 @@ export default function Layout({ children }) {
                         fontSize: '12px',
                       }}
                     >
-                      Keep building! 💪
+                      Keep growing!
                     </div>
                   </div>
                 </div>
