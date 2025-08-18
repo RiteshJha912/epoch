@@ -1,5 +1,4 @@
-// components/HabitGrid.js
-import { isToday, canMarkToday, formatDate } from '../lib/utils'
+import { isToday, canMarkToday, formatDate, getDayStatus } from '../lib/utils'
 
 export default function HabitGrid({ habit, onDayClick }) {
   const totalDays = habit.days.length
@@ -14,68 +13,78 @@ export default function HabitGrid({ habit, onDayClick }) {
       <div className='habit-header'>
         <h3 className='habit-title'>{habit.name}</h3>
         <div className='progress-text'>
-          {completedDays}/{totalDays} days completed
+          {completedDays}/{totalDays} days •{' '}
+          {Math.round((completedDays / totalDays) * 100)}% complete
         </div>
       </div>
 
       {isCompleted && (
         <div className='success-message'>
-          🎉 Congratulations! You've successfully completed your "{habit.name}"
-          habit! You're building amazing discipline! 🌟
+          <div style={{ fontSize: '32px', marginBottom: '12px' }}>🎉</div>
+          <h3
+            style={{ marginBottom: '8px', fontSize: '20px', fontWeight: '700' }}
+          >
+            Incredible work!
+          </h3>
+          <p style={{ margin: 0, fontSize: '16px' }}>
+            You've successfully completed "{habit.name}"! You're building the
+            discipline that creates lasting change. Ready for your next
+            challenge?
+          </p>
         </div>
       )}
 
       <div className={`habit-grid ${gridClass}`}>
         {habit.days.map((day, index) => {
-          const dayDate = new Date(day.date)
-          const isTodayDay = isToday(dayDate)
-          const canClick = canMarkToday([day]) && isTodayDay
-          const isPastDay =
-            new Date(day.date) < new Date(formatDate(new Date()))
+          const status = getDayStatus(day)
+          const canClick = status === 'today' && !day.completed
+
+          let content = day.day
+          if (status === 'missed') {
+            content = '😞'
+          } else if (status === 'completed') {
+            content = '✓'
+          } else if (status === 'today') {
+            content = day.day
+          }
 
           return (
             <div
               key={day.date}
-              className={`habit-day ${day.completed ? 'completed' : ''} ${
-                isTodayDay ? 'today' : ''
-              } ${
-                !canClick && !day.completed && isTodayDay
-                  ? ''
-                  : !canClick && !day.completed && !isPastDay
-                  ? 'disabled'
-                  : ''
-              }`}
+              className={`habit-day ${status}`}
               onClick={() => (canClick ? onDayClick(habit.id, index) : null)}
-              style={{
-                opacity: !day.completed && isPastDay && !isTodayDay ? 0.3 : 1,
-              }}
+              title={
+                status === 'completed'
+                  ? `Completed on ${day.date}`
+                  : status === 'missed'
+                  ? `Missed on ${day.date}`
+                  : status === 'today'
+                  ? 'Click to mark as complete!'
+                  : `Scheduled for ${day.date}`
+              }
             >
-              {day.day}
+              {content}
             </div>
           )
         })}
       </div>
 
-      <div style={{ marginTop: '15px', textAlign: 'center' }}>
+      <div className='progress-bar-container'>
         <div
+          className='progress-bar'
           style={{
-            width: '100%',
-            height: '8px',
-            background: 'rgba(255,255,255,0.2)',
-            borderRadius: '4px',
-            overflow: 'hidden',
+            width: `${(completedDays / totalDays) * 100}%`,
           }}
-        >
-          <div
-            style={{
-              width: `${(completedDays / totalDays) * 100}%`,
-              height: '100%',
-              background: 'linear-gradient(45deg, #2ecc71, #27ae60)',
-              transition: 'width 0.3s ease',
-            }}
-          />
-        </div>
+        />
       </div>
+
+      <p className='github-contribution-text'>
+        {completedDays === 0
+          ? "Start your journey today! Click on today's square to mark it complete."
+          : completedDays === totalDays
+          ? "🔥 Perfect completion! You've mastered this habit."
+          : `Keep it up! ${totalDays - completedDays} more days to go.`}
+      </p>
     </div>
   )
 }

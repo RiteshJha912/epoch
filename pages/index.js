@@ -1,4 +1,3 @@
-// pages/index.js
 import { useState, useEffect } from 'react'
 import {
   collection,
@@ -23,23 +22,41 @@ export default function Home() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('Auth state changed:', user)
       setUser(user)
       if (user) {
+        console.log('Setting up habits listener for user:', user.uid)
         // Listen to user's habits
         const q = query(
           collection(db, 'habits'),
           where('userId', '==', user.uid)
         )
 
-        const unsubscribeHabits = onSnapshot(q, (snapshot) => {
-          const habitsData = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }))
-          setHabits(habitsData)
-        })
+        const unsubscribeHabits = onSnapshot(
+          q,
+          (snapshot) => {
+            console.log(
+              'Habits snapshot received, docs count:',
+              snapshot.docs.length
+            )
+            const habitsData = snapshot.docs.map((doc) => {
+              const data = { id: doc.id, ...doc.data() }
+              console.log('Habit data:', data)
+              return data
+            })
+            console.log('Setting habits:', habitsData)
+            setHabits(habitsData)
+          },
+          (error) => {
+            console.error('Error listening to habits:', error)
+            alert('Error loading habits: ' + error.message)
+          }
+        )
 
         return () => unsubscribeHabits()
+      } else {
+        console.log('No user, clearing habits')
+        setHabits([])
       }
     })
 
@@ -47,19 +64,30 @@ export default function Home() {
   }, [])
 
   const addHabit = async (habitData) => {
-    if (!user) return
+    if (!user) {
+      console.error('No user found')
+      alert('Please make sure you are logged in')
+      return
+    }
 
     try {
-      const days = generateHabitDays(habitData.startDate, habitData.duration)
+      console.log('Adding habit:', habitData)
+      console.log('User:', user.uid)
 
-      await addDoc(collection(db, 'habits'), {
+      const days = generateHabitDays(habitData.startDate, habitData.duration)
+      console.log('Generated days:', days)
+
+      const docRef = await addDoc(collection(db, 'habits'), {
         ...habitData,
         days,
         userId: user.uid,
         createdAt: new Date().toISOString(),
       })
+
+      console.log('Habit added successfully with ID:', docRef.id)
     } catch (error) {
       console.error('Error adding habit:', error)
+      alert('Error adding habit: ' + error.message)
     }
   }
 
@@ -78,25 +106,99 @@ export default function Home() {
     }
   }
 
+  const totalHabits = habits.length
+  const completedHabits = habits.filter((habit) =>
+    habit.days.every((day) => day.completed)
+  ).length
+  const totalDaysCompleted = habits.reduce(
+    (total, habit) => total + habit.days.filter((day) => day.completed).length,
+    0
+  )
+
   return (
     <Layout>
-      <div className='glass' style={{ padding: '30px' }}>
+      <div className='glass' style={{ padding: '32px' }}>
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '30px',
+            alignItems: 'flex-start',
+            marginBottom: '32px',
             flexWrap: 'wrap',
-            gap: '15px',
+            gap: '20px',
           }}
         >
-          <h2 style={{ color: 'white', fontSize: '24px' }}>
-            Your Habits ({habits.length})
-          </h2>
+          <div>
+            <h2
+              style={{
+                color: '#e6edf3',
+                fontSize: '28px',
+                fontWeight: '700',
+                marginBottom: '8px',
+              }}
+            >
+              {habits.length === 0
+                ? 'Ready to start your journey?'
+                : 'Your Active Habits'}
+            </h2>
+
+            {habits.length > 0 && (
+              <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div
+                    style={{
+                      fontSize: '24px',
+                      fontWeight: '700',
+                      color: '#238636',
+                      marginBottom: '4px',
+                    }}
+                  >
+                    {totalDaysCompleted}
+                  </div>
+                  <div style={{ color: '#7d8590', fontSize: '13px' }}>
+                    Days completed
+                  </div>
+                </div>
+
+                <div style={{ textAlign: 'center' }}>
+                  <div
+                    style={{
+                      fontSize: '24px',
+                      fontWeight: '700',
+                      color: '#238636',
+                      marginBottom: '4px',
+                    }}
+                  >
+                    {completedHabits}
+                  </div>
+                  <div style={{ color: '#7d8590', fontSize: '13px' }}>
+                    Habits completed
+                  </div>
+                </div>
+
+                <div style={{ textAlign: 'center' }}>
+                  <div
+                    style={{
+                      fontSize: '24px',
+                      fontWeight: '700',
+                      color: '#238636',
+                      marginBottom: '4px',
+                    }}
+                  >
+                    {totalHabits}
+                  </div>
+                  <div style={{ color: '#7d8590', fontSize: '13px' }}>
+                    Total habits
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
           <button
             className='btn btn-primary'
             onClick={() => setShowModal(true)}
+            style={{ padding: '12px 24px' }}
           >
             + Add New Habit
           </button>
@@ -106,12 +208,27 @@ export default function Home() {
           <div
             style={{
               textAlign: 'center',
-              color: 'rgba(255,255,255,0.7)',
-              padding: '60px 20px',
+              color: '#7d8590',
+              padding: '80px 20px',
+              background: '#0d1117',
+              borderRadius: '12px',
+              border: '1px solid #21262d',
             }}
           >
-            <h3 style={{ marginBottom: '15px' }}>No habits yet!</h3>
-            <p>Start building better habits by adding your first one.</p>
+            <div style={{ fontSize: '48px', marginBottom: '24px' }}>🌱</div>
+            <p
+              style={{
+                fontSize: '18px',
+                fontWeight: '500',
+                marginBottom: '8px',
+              }}
+            >
+              No habits found
+            </p>
+            <p style={{ fontSize: '14px', lineHeight: '1.5' }}>
+              Click "Add New Habit" to start your first habit journey and track
+              your progress.
+            </p>
           </div>
         ) : (
           habits.map((habit) => (
