@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../lib/firebase'
 import { useRouter } from 'next/router'
+import styles from '../styles/components/Layout.module.css'
 
 export default function Layout({ children }) {
   const [user, setUser] = useState(null)
@@ -31,7 +32,6 @@ export default function Layout({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user)
       setLoading(false)
-
       if (!user && router.pathname !== '/login') {
         router.push('/login')
       }

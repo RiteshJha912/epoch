@@ -39,6 +39,7 @@ import Layout from '../components/Layout'
 import HabitGrid from '../components/HabitGrid'
 import AddHabitModal from '../components/AddHabitModal'
 import { generateHabitDays, formatDate } from '../lib/utils'
+import styles from '../styles/pages/index.module.css'
 
 export default function Home() {
   const [habits, setHabits] = useState([])
@@ -50,11 +51,13 @@ export default function Home() {
       console.log('Auth state changed:', authUser)
       setUser(authUser)
     })
+
     return () => unsubscribe()
   }, [])
 
   useEffect(() => {
     let unsubscribeHabits
+
     if (user) {
       console.log('Setting up habits listener for user:', user.uid)
       const q = query(collection(db, 'habits'), where('userId', '==', user.uid))
@@ -97,6 +100,7 @@ export default function Home() {
       const today = new Date()
       const habitsToDelete = habits.filter((habit) => {
         const isCompleted = habit.days.every((day) => day.completed)
+
         if (!isCompleted || !habit.completionDate) {
           return false
         }
@@ -134,12 +138,14 @@ export default function Home() {
     try {
       console.log('Adding habit:', habitData)
       const days = generateHabitDays(habitData.startDate, habitData.duration)
+
       await addDoc(collection(db, 'habits'), {
         ...habitData,
         days,
         userId: user.uid,
         createdAt: new Date().toISOString(),
       })
+
       console.log('Habit added successfully.')
     } catch (error) {
       console.error('Error adding habit:', error)
@@ -151,6 +157,7 @@ export default function Home() {
     const confirmDelete = window.confirm(
       'Are you sure you want to delete this habit? This cannot be undone.'
     )
+
     if (confirmDelete) {
       try {
         await deleteDoc(doc(db, 'habits', habitId))
@@ -168,7 +175,6 @@ export default function Home() {
       updatedDays[dayIndex].completed = true
 
       const habitRef = doc(db, 'habits', habitId)
-
       const isLastDay = dayIndex === updatedDays.length - 1
       const isPerfectCompletion = updatedDays.every((day) => day.completed)
 
@@ -279,6 +285,7 @@ export default function Home() {
             + Add New Habit
           </button>
         </div>
+
         {habits.length === 0 ? (
           <div
             style={{
@@ -316,6 +323,7 @@ export default function Home() {
           ))
         )}
       </div>
+
       <AddHabitModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}

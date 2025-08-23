@@ -16,12 +16,11 @@
  * - `pages/index.js`: This is the parent component that renders multiple `HabitGrid` components and passes down the necessary habit data and callback functions.
  */
 
-/* components/HabitGrid.js */
 import { isToday, canMarkToday, formatDate, getDayStatus } from '../lib/utils'
+import styles from '../styles/components/HabitGrid.module.css'
 
 const getCelebrationMessage = (completedDays, totalDays) => {
   const completionPercentage = Math.round((completedDays / totalDays) * 100)
-
   if (completedDays === totalDays) {
     return {
       title: 'Incredible work! 🎉',
@@ -47,17 +46,21 @@ export default function HabitGrid({ habit, onDayClick, onDelete }) {
   const habitFinished = habit.days[totalDays - 1].date < formatDate(new Date())
 
   const gridClass =
-    totalDays <= 7 ? 'grid-7' : totalDays <= 14 ? 'grid-14' : 'grid-21'
+    totalDays <= 7
+      ? styles.grid7
+      : totalDays <= 14
+      ? styles.grid14
+      : styles.grid21
 
   const celebrationMessage = habitFinished
     ? getCelebrationMessage(completedDays, totalDays)
     : null
 
   return (
-    <div className='habit-card glass'>
-      <div className='habit-header'>
-        <h3 className='habit-title'>{habit.name}</h3>
-        <button className='btn-delete' onClick={() => onDelete(habit.id)}>
+    <div className={`${styles.habitCard} glass`}>
+      <div className={styles.habitHeader}>
+        <h3 className={styles.habitTitle}>{habit.name}</h3>
+        <button className={styles.btnDelete} onClick={() => onDelete(habit.id)}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='16'
@@ -76,13 +79,13 @@ export default function HabitGrid({ habit, onDayClick, onDelete }) {
           </svg>
         </button>
       </div>
-      <div className='progress-text'>
+      <div className={styles.progressText}>
         {completedDays}/{totalDays} days •{' '}
         {Math.round((completedDays / totalDays) * 100)}% complete
       </div>
 
       {celebrationMessage && (
-        <div className='success-message'>
+        <div className={styles.successMessage}>
           <div style={{ fontSize: '32px', marginBottom: '12px' }}>
             {celebrationMessage.isPerfect ? '🎉' : '👏'}
           </div>
@@ -97,24 +100,23 @@ export default function HabitGrid({ habit, onDayClick, onDelete }) {
         </div>
       )}
 
-      <div className={`habit-grid ${gridClass}`}>
+      <div className={`${styles.habitGrid} ${gridClass}`}>
         {habit.days.map((day, index) => {
           const status = getDayStatus(day)
           const canClick = status === 'today' && !day.completed
 
+          // Show day number for all squares, just like GitHub
           let content = day.day
+
+          // Only show emoji for missed days
           if (status === 'missed') {
             content = '😞'
-          } else if (status === 'completed') {
-            content = '✓'
-          } else if (status === 'today') {
-            content = day.day
           }
 
           return (
             <div
               key={day.date}
-              className={`habit-day ${status}`}
+              className={`${styles.habitDay} ${styles[status]}`}
               onClick={() => (canClick ? onDayClick(habit.id, index) : null)}
               title={
                 status === 'completed'
@@ -132,16 +134,16 @@ export default function HabitGrid({ habit, onDayClick, onDelete }) {
         })}
       </div>
 
-      <div className='progress-bar-container'>
+      <div className={styles.progressBarContainer}>
         <div
-          className='progress-bar'
+          className={styles.progressBar}
           style={{
             width: `${(completedDays / totalDays) * 100}%`,
           }}
         />
       </div>
 
-      <p className='github-contribution-text'>
+      <p className={styles.githubContributionText}>
         {completedDays === 0
           ? "Start your journey today! Click on today's square to mark it complete."
           : completedDays === totalDays

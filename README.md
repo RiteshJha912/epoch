@@ -11,19 +11,34 @@ roooooooot/
 │   ├── AddHabitModal.js
 │   ├── HabitGrid.js
 │   ├── Layout.js
+│
 ├── lib/
 │   ├── firebase.js
 │   ├── utils.js
+│
 ├── pages/
 │   ├── api/
 │   ├── _app.js
 │   ├── _document.js
 │   ├── index.js
 │   ├── login.js
+│
 ├── public/
+│
 ├── styles/
+│   ├── components/
+│   │   ├── AddHabitModal.module.css
+│   │   ├── HabitGrid.module.css
+│   │   ├── Layout.module.css
+│   │
+│   ├── pages/
+│   │   ├── index.module.css
+│   │   ├── login.module.css
+│   │
 │   ├── Home.module.css
-│   ├── globals.js
-└── README.md    (You are reading this !)
+│   ├── globals.css
+│
+└── README.md   (You are reading this!)
+
 ```
 

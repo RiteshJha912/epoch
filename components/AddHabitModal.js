@@ -13,6 +13,7 @@
  */
 
 import { useState } from 'react'
+import styles from '../styles/components/AddHabitModal.module.css'
 
 export default function AddHabitModal({ isOpen, onClose, onAdd }) {
   const [habitName, setHabitName] = useState('')
@@ -47,12 +48,11 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
   if (!isOpen) return null
 
   return (
-    <div className='modal-overlay' onClick={handleOverlayClick}>
-      <div className='modal-content'>
-        <button className='modal-close' onClick={onClose} type='button'>
+    <div className={styles.modalOverlay} onClick={handleOverlayClick}>
+      <div className={styles.modalContent}>
+        <button className={styles.modalClose} onClick={onClose} type='button'>
           ×
         </button>
-
         <h2
           style={{
             marginBottom: '24px',
@@ -64,7 +64,6 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
         >
           Start a new habit
         </h2>
-
         <p
           style={{
             color: '#7d8590',
@@ -77,7 +76,6 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
           Choose something small and specific. Consistency beats intensity every
           time.
         </p>
-
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
             <label>What habit do you want to build?</label>
@@ -89,10 +87,10 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
               required
             />
           </div>
-
           <div className='form-group'>
             <label>How long do you want to commit?</label>
             <select
+              className={styles.selectDropdown}
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
             >
@@ -111,7 +109,6 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
               💡 Start with shorter periods if you're new to habit building
             </small>
           </div>
-
           <div
             style={{
               display: 'flex',
