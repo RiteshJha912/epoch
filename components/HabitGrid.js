@@ -25,7 +25,7 @@ const getCelebrationMessage = (completedDays, totalDays) => {
   const completionPercentage = Math.round((completedDays / totalDays) * 100)
   if (completedDays === totalDays) {
     return {
-      title: 'Incredible work! 🎉',
+      title: 'Incredible work! ',
       message:
         "You've successfully completed this habit with a perfect streak! This is a testament to your amazing discipline.",
       emoji: '🔥',
