@@ -1,3 +1,21 @@
+/*
+ * This file is a React component that renders a visual grid for a single habit.
+ * It displays the progress of a habit in a format similar to a GitHub contributions graph.
+ *
+ * Key functionalities:
+ * - **Props:** It receives a `habit` object, and two callback functions, `onDayClick` and `onDelete`, from the parent component (`pages/index.js`).
+ * - **Dynamic Styling:** Determines the CSS grid layout (`grid-7`, `grid-14`, or `grid-21`) based on the habit's duration.
+ * - **Progress and Statistics:** Calculates and displays the completion percentage and the number of days completed out of the total duration.
+ * - **Habit Day Rendering:** Maps through the `habit.days` array to render a square for each day. Each square's appearance (color, content) is determined by its status (`completed`, `today`, `missed`, `future`), which is calculated using the `getDayStatus` utility function.
+ * - **Click Handler:** The `onClick` handler on each day square calls the `onDayClick` function (passed from the parent) only if the day is "today" and has not yet been marked as complete.
+ * - **Celebration Messages:** The `getCelebrationMessage` function provides dynamic feedback and celebratory messages when a habit is finished, especially for a perfect completion.
+ * - **Delete Functionality:** The delete button triggers the `onDelete` function (passed from the parent) to remove the habit.
+ *
+ * Linked files:
+ * - `../lib/utils.js`: Imports utility functions like `isToday`, `canMarkToday`, `formatDate`, and `getDayStatus` to handle date logic and determine the status and appearance of each day.
+ * - `pages/index.js`: This is the parent component that renders multiple `HabitGrid` components and passes down the necessary habit data and callback functions.
+ */
+
 /* components/HabitGrid.js */
 import { isToday, canMarkToday, formatDate, getDayStatus } from '../lib/utils'
 
@@ -20,7 +38,7 @@ const getCelebrationMessage = (completedDays, totalDays) => {
       isPerfect: false,
     }
   }
-  return null 
+  return null
 }
 
 export default function HabitGrid({ habit, onDayClick, onDelete }) {

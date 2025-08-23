@@ -1,3 +1,19 @@
+/*
+ * This file is a Next.js page component responsible for the user login interface.
+ * It handles Google Sign-In using Firebase Authentication.
+ *
+ * Key functionalities:
+ * - Displays the login page with a hero section promoting the app, a "Why it works" section, and a "Start building habits" button.
+ * - Manages the UI state for loading and errors using React's `useState` hook.
+ * - The `handleGoogleSignIn` function handles the authentication process:
+ * - It uses `signInWithPopup` from the Firebase SDK to initiate Google Sign-In.
+ * - On successful sign-in, it redirects the user to the homepage (`/`) using `next/router`.
+ * - It catches and displays any errors that occur during the sign-in process.
+ * - **Linked files:**
+ * - `../lib/firebase.js`: Imports `auth` and `googleProvider` to connect with Firebase Authentication services.
+ * - `next/router`: Used for client-side navigation to the homepage after a successful login.
+ */
+
 import { useState } from 'react'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, googleProvider } from '../lib/firebase'
@@ -38,10 +54,10 @@ export default function Login() {
             interface.
           </p>
           <p className='hero-description'>
-            We tap into the psychology of habit building,
-            giving you a beautiful visualization of your progress, much like a
-            contributions graph. This visual momentum helps you stay on
-            track and see your growth over time.
+            We tap into the psychology of habit building, giving you a beautiful
+            visualization of your progress, much like a contributions graph.
+            This visual momentum helps you stay on track and see your growth
+            over time.
           </p>
 
           {error && (

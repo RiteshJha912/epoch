@@ -1,4 +1,27 @@
-/* pages/index.js */
+/*
+ * This file is the main page component for the Epoch habit tracker application.
+ * It's the central hub for user-specific data and habit management.
+ * * Key functionalities:
+ * - **User Authentication State:** Uses `useEffect` and `onAuthStateChanged` to listen for the current user's authentication status and updates the `user` state.
+ * - **Data Fetching:** Once a user is logged in (`user` state is not null), it sets up a real-time listener (`onSnapshot`) to fetch and update the user's habits from Firestore, ensuring the UI always reflects the latest data.
+ * - **Habit Management Functions:**
+ * - `addHabit`: Adds a new habit to the Firestore database with a user ID and automatically generated days.
+ * - `deleteHabit`: Removes a habit from Firestore based on its ID after a user confirmation.
+ * - `markDay`: Updates the `completed` status of a specific day within a habit in Firestore. It also checks if the habit is fully completed and updates a `completionDate`.
+ * - **Automatic Deletion:** A `useEffect` hook runs to automatically delete habits that were completed more than 3 days ago.
+ * - **UI Rendering:**
+ * - Displays key statistics (total days completed, habits completed, total habits) if there are active habits.
+ * - Renders a message to prompt the user to add a new habit if none exist.
+ * - Maps through the `habits` array and renders a `HabitGrid` component for each habit.
+ * - Manages the state of the `AddHabitModal` component to show or hide the modal for adding a new habit.
+ * * **Linked files:**
+ * - **`../lib/firebase.js`:** Imports `auth` and `db` to interact with Firebase Authentication and Firestore database.
+ * - **`../components/Layout.js`:** Wraps the entire page content with the app's consistent layout, including a header and footer.
+ * - **`../components/HabitGrid.js`:** A component that receives a `habit` object and renders the visual grid for it. It uses the `markDay` and `deleteHabit` functions passed down as props.
+ * - **`../components/AddHabitModal.js`:** A modal component that collects new habit data and uses the `addHabit` function passed down as a prop.
+ * - **`../lib/utils.js`:** Imports helper functions like `generateHabitDays` to create the initial day objects for a new habit and `formatDate` (although `formatDate` is imported but not used in the provided code, it's likely a utility for date formatting).
+ */
+
 import { useState, useEffect } from 'react'
 import {
   collection,

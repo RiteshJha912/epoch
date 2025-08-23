@@ -1,3 +1,17 @@
+/*
+ * This file defines the `AddHabitModal` component, which is a modal dialog for creating a new habit.
+ * It provides a user interface for entering a habit's name and selecting its duration before adding it to the application.
+ *
+ * Key functionalities:
+ * - **State Management:** Uses the `useState` hook to manage the form's input values: `habitName` (the name of the habit) and `duration` (the length of the habit journey).
+ * - **Modal Visibility:** The component's rendering is conditional based on the `isOpen` prop. If `isOpen` is `false`, the component returns `null` and doesn't appear on the screen.
+ * - **Form Submission:** The `handleSubmit` function is called when the form is submitted. It validates that a habit name has been entered and, if so, constructs a new habit object. It then passes this object to the `onAdd` function, which is a callback from the parent component responsible for adding the data to the database.
+ * - **UI Interactions:** The `onClose` function is called when the user clicks the "Maybe later" button or the close button (`×`). The `handleOverlayClick` function also calls `onClose`, allowing the user to click outside the modal to dismiss it.
+ *
+ * Linked files:
+ * - `pages/index.js`: This is the parent component that renders this modal. It controls the `isOpen` prop and passes the `onClose` and `onAdd` callback functions, which handle the logic for closing the modal and adding the new habit to the database, respectively.
+ */
+
 import { useState } from 'react'
 
 export default function AddHabitModal({ isOpen, onClose, onAdd }) {
@@ -82,15 +96,9 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
             >
-              <option value='1week'>
-                1 Week (7 days)
-              </option>
-              <option value='2weeks'>
-                2 Weeks (14 days)
-              </option>
-              <option value='3weeks'>
-                3 Weeks (21 days)
-              </option>
+              <option value='1week'>1 Week (7 days)</option>
+              <option value='2weeks'>2 Weeks (14 days)</option>
+              <option value='3weeks'>3 Weeks (21 days)</option>
             </select>
             <small
               style={{
@@ -120,7 +128,7 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
               Maybe later
             </button>
             <button type='submit' className='btn btn-primary'>
-              Let's do this! 
+              Let's do this!
             </button>
           </div>
         </form>
