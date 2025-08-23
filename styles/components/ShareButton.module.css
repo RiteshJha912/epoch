@@ -168,14 +168,17 @@
 
     .shareOptions {
         justify-content: center;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 4px;
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: 100%;
     }
 
     .shareOption {
         flex-shrink: 0;
         min-width: fit-content;
+        flex: 1;
+        max-width: calc(33.333% - 6px);
+        justify-content: center;
     }
 }
 
@@ -183,10 +186,23 @@
     .shareButton {
         font-size: 13px;
         padding: 10px 16px;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .shareOptions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+        gap: 8px;
     }
 
     .shareOption {
-        font-size: 11px;
-        padding: 6px 10px;
+        font-size: 12px;
+        padding: 10px 12px;
+        flex: none;
+        max-width: none;
+        width: 100%;
+        justify-content: center;
     }
 }
