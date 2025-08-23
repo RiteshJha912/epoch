@@ -225,14 +225,26 @@
     line-height: 1.5;
 }
 
+/* Updated success message container with share button inside */
+.successMessageContainer {
+    margin: 16px 0;
+}
+
 .successMessage {
     background: rgba(35, 134, 54, 0.1);
     border: 1px solid rgba(35, 134, 54, 0.3);
     border-radius: 8px;
     padding: 20px;
-    margin: 16px 0;
     text-align: center;
     color: #e6edf3;
+    position: relative;
+}
+
+/* Position share button inside the success message container */
+.successMessage .shareContainer {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
 }
 
 /* Intensity levels like GitHub */
@@ -274,6 +286,16 @@
     .habitCard {
         padding: 20px;
     }
+
+    /* Stack elements vertically on mobile, keep share button inside */
+    .successMessageContainer {
+        margin: 16px 0;
+    }
+
+    .successMessage {
+        text-align: center;
+        padding: 16px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -293,5 +315,9 @@
 
     .githubContributionText {
         font-size: 12px;
+    }
+
+    .successMessage {
+        padding: 16px;
     }
 }

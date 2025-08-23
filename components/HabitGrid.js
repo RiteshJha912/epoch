@@ -10,13 +10,15 @@
  * - **Click Handler:** The `onClick` handler on each day square calls the `onDayClick` function (passed from the parent) only if the day is "today" and has not yet been marked as complete.
  * - **Celebration Messages:** The `getCelebrationMessage` function provides dynamic feedback and celebratory messages when a habit is finished, especially for a perfect completion.
  * - **Delete Functionality:** The delete button triggers the `onDelete` function (passed from the parent) to remove the habit.
+ * - **Share Functionality:** Displays a share button when habits meet achievement criteria (7, 14, or 21 days with >80% completion).
  *
  * Linked files:
  * - `../lib/utils.js`: Imports utility functions like `isToday`, `canMarkToday`, `formatDate`, and `getDayStatus` to handle date logic and determine the status and appearance of each day.
  * - `pages/index.js`: This is the parent component that renders multiple `HabitGrid` components and passes down the necessary habit data and callback functions.
+ * - `ShareButton.js`: Component for generating and sharing achievement images.
  */
-
 import { isToday, canMarkToday, formatDate, getDayStatus } from '../lib/utils'
+import ShareButton from './ShareButton'
 import styles from '../styles/components/HabitGrid.module.css'
 
 const getCelebrationMessage = (completedDays, totalDays) => {
@@ -79,24 +81,36 @@ export default function HabitGrid({ habit, onDayClick, onDelete }) {
           </svg>
         </button>
       </div>
+
       <div className={styles.progressText}>
         {completedDays}/{totalDays} days •{' '}
         {Math.round((completedDays / totalDays) * 100)}% complete
       </div>
 
       {celebrationMessage && (
-        <div className={styles.successMessage}>
-          <div style={{ fontSize: '32px', marginBottom: '12px' }}>
-            {celebrationMessage.isPerfect ? '🎉' : '👏'}
+        <div className={styles.successMessageContainer}>
+          <div className={styles.successMessage}>
+            <div style={{ fontSize: '32px', marginBottom: '12px' }}>
+              {celebrationMessage.isPerfect ? '🎉' : '👏'}
+            </div>
+            <h3
+              style={{
+                marginBottom: '8px',
+                fontSize: '20px',
+                fontWeight: '700',
+              }}
+            >
+              {celebrationMessage.title}
+            </h3>
+            <p style={{ margin: 0, fontSize: '16px' }}>
+              {celebrationMessage.message}
+            </p>
+            <ShareButton
+              habit={habit}
+              completedDays={completedDays}
+              totalDays={totalDays}
+            />
           </div>
-          <h3
-            style={{ marginBottom: '8px', fontSize: '20px', fontWeight: '700' }}
-          >
-            {celebrationMessage.title}
-          </h3>
-          <p style={{ margin: 0, fontSize: '16px' }}>
-            {celebrationMessage.message}
-          </p>
         </div>
       )}
 
@@ -104,15 +118,12 @@ export default function HabitGrid({ habit, onDayClick, onDelete }) {
         {habit.days.map((day, index) => {
           const status = getDayStatus(day)
           const canClick = status === 'today' && !day.completed
-
           // Show day number for all squares, just like GitHub
           let content = day.day
-
           // Only show emoji for missed days
           if (status === 'missed') {
             content = '😞'
           }
-
           return (
             <div
               key={day.date}

@@ -1,0 +1,192 @@
+/* Share Button Styles */
+.shareContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.shareButton {
+    background: linear-gradient(135deg, #238636, #2ea043);
+    border: none;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(35, 134, 54, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.shareButton:hover {
+    background: linear-gradient(135deg, #2ea043, #26a641);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
+}
+
+.shareButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(35, 134, 54, 0.2);
+}
+
+.shareButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.shareButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.shareButton:hover::before {
+    left: 100%;
+}
+
+.spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.shareOptions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.shareOption {
+    background: rgba(35, 134, 54, 0.1);
+    border: 1px solid rgba(35, 134, 54, 0.3);
+    color: #238636;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.shareOption:hover {
+    background: rgba(35, 134, 54, 0.2);
+    border-color: rgba(35, 134, 54, 0.5);
+    color: #2ea043;
+    transform: translateY(-1px);
+}
+
+.shareOption:active {
+    transform: translateY(0);
+}
+
+/* Specific colors for different platforms */
+.shareOption:nth-child(1) {
+    /* WhatsApp */
+    color: #25D366;
+    border-color: rgba(37, 211, 102, 0.3);
+    background: rgba(37, 211, 102, 0.1);
+}
+
+.shareOption:nth-child(1):hover {
+    background: rgba(37, 211, 102, 0.2);
+    border-color: rgba(37, 211, 102, 0.5);
+}
+
+.shareOption:nth-child(2) {
+    /* Instagram */
+    color: #E4405F;
+    border-color: rgba(228, 64, 95, 0.3);
+    background: rgba(228, 64, 95, 0.1);
+}
+
+.shareOption:nth-child(2):hover {
+    background: rgba(228, 64, 95, 0.2);
+    border-color: rgba(228, 64, 95, 0.5);
+}
+
+.shareOption:nth-child(3) {
+    /* Download */
+    color: #58a6ff;
+    border-color: rgba(88, 166, 255, 0.3);
+    background: rgba(88, 166, 255, 0.1);
+}
+
+.shareOption:nth-child(3):hover {
+    background: rgba(88, 166, 255, 0.2);
+    border-color: rgba(88, 166, 255, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .shareContainer {
+        align-items: center;
+    }
+
+    .shareOptions {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .shareOption {
+        flex-shrink: 0;
+        min-width: fit-content;
+    }
+}
+
+@media (max-width: 480px) {
+    .shareButton {
+        font-size: 13px;
+        padding: 10px 16px;
+    }
+
+    .shareOption {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}
