@@ -51,7 +51,7 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
 
       ctx.fillStyle = '#7d8590'
       ctx.font = '32px Arial, sans-serif' // Increased from 24px
-      ctx.fillText('Habit Tracking', canvas.width / 2, 170)
+      ctx.fillText('Consitency Builder', canvas.width / 2, 170)
 
       // Achievement emoji (larger)
       ctx.font = '150px Arial, sans-serif' // Increased from 120px
@@ -77,14 +77,42 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
           : habit.name
       ctx.fillText(habitName, canvas.width / 2, 480)
 
-      // Stats section background (larger)
+      // Stats section background (larger with border radius)
       const statsBoxY = 520
       const statsBoxHeight = 350 // Increased height
+      const statsBoxX = 100
+      const statsBoxWidth = canvas.width - 200
+
+      // Draw rounded rectangle for stats container
+      const drawRoundedRect = (x, y, width, height, radius) => {
+        ctx.beginPath()
+        ctx.moveTo(x + radius, y)
+        ctx.lineTo(x + width - radius, y)
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius)
+        ctx.lineTo(x + width, y + height - radius)
+        ctx.quadraticCurveTo(
+          x + width,
+          y + height,
+          x + width - radius,
+          y + height
+        )
+        ctx.lineTo(x + radius, y + height)
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius)
+        ctx.lineTo(x, y + radius)
+        ctx.quadraticCurveTo(x, y, x + radius, y)
+        ctx.closePath()
+      }
+
+      // Fill stats container with rounded corners
       ctx.fillStyle = 'rgba(35, 134, 54, 0.1)'
-      ctx.fillRect(100, statsBoxY, canvas.width - 200, statsBoxHeight)
+      drawRoundedRect(statsBoxX, statsBoxY, statsBoxWidth, statsBoxHeight, 15)
+      ctx.fill()
+
+      // Stroke stats container with rounded corners
       ctx.strokeStyle = 'rgba(35, 134, 54, 0.3)'
       ctx.lineWidth = 3
-      ctx.strokeRect(100, statsBoxY, canvas.width - 200, statsBoxHeight)
+      drawRoundedRect(statsBoxX, statsBoxY, statsBoxWidth, statsBoxHeight, 15)
+      ctx.stroke()
 
       // Stats (larger)
       ctx.fillStyle = '#238636'
@@ -131,9 +159,9 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
 
       // Motivational message (larger and with proper spacing)
       const messages = {
-        100: "Perfect streak! You're unstoppable! 🚀",
-        90: "Outstanding dedication! You're on fire! 🔥",
-        80: 'Amazing consistency! Keep building! 💪',
+        100: "Perfect streak! You're unstoppable! ",
+        90: "Outstanding dedication! You're on fire! ",
+        80: 'Amazing consistency! Keep Growing! ',
       }
 
       let message = messages[100]
@@ -147,7 +175,7 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
       ctx.font = '38px Arial, sans-serif' // Increased from 32px
       ctx.fillText(message, canvas.width / 2, 930) // Moved down from 900 to add gap
 
-      // Duration badge with proper background coverage
+      // Duration badge with proper background coverage and border radius
       const badgeText = `${totalDays} DAY CHALLENGE`
       ctx.font = 'bold 36px Arial, sans-serif' // Increased from 28px
 
@@ -157,19 +185,22 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
       const textHeight = 36 // Approximate font size
       const padding = 20
 
-      // Draw badge background with proper coverage
+      // Draw badge background with proper coverage and rounded corners
       const badgeWidth = textWidth + padding * 2
       const badgeHeight = textHeight + padding * 1.5
       const badgeX = (canvas.width - badgeWidth) / 2
       const badgeY = 980 // Moved down from 950 to accommodate message spacing
 
+      // Draw rounded rectangle for badge
       ctx.fillStyle = '#238636'
-      ctx.fillRect(badgeX, badgeY, badgeWidth, badgeHeight)
+      drawRoundedRect(badgeX, badgeY, badgeWidth, badgeHeight, 12)
+      ctx.fill()
 
-      // Add border to badge
+      // Add border to badge with rounded corners
       ctx.strokeStyle = '#2ea043'
       ctx.lineWidth = 2
-      ctx.strokeRect(badgeX, badgeY, badgeWidth, badgeHeight)
+      drawRoundedRect(badgeX, badgeY, badgeWidth, badgeHeight, 12)
+      ctx.stroke()
 
       // Draw badge text
       ctx.fillStyle = '#ffffff'
@@ -191,7 +222,7 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
       // Join the movement (larger)
       ctx.fillStyle = '#58a6ff'
       ctx.font = '30px Arial, sans-serif' // Increased from 24px
-      ctx.fillText('Start your habit journey today! 🌟', canvas.width / 2, 1180) // Moved down
+      ctx.fillText('Start your habit journey today! ', canvas.width / 2, 1180) // Moved down
 
       // Convert to blob and create URL
       canvas.toBlob(
