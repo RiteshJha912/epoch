@@ -6,16 +6,16 @@ import { formatDate } from '../lib/utils'
 export default function Test() {
   // Create dates where the habit period ended yesterday
   const createHabitDates = (daysAgo = 1) => {
-    return Array.from({ length: 21 }, (_, i) => {
+    return Array.from({ length: 14 }, (_, i) => {
       const date = new Date()
-      date.setDate(date.getDate() - (21 - i + daysAgo)) // Habit ended daysAgo
+      date.setDate(date.getDate() - (14 - i + daysAgo)) // Habit ended daysAgo
       return formatDate(date)
     })
   }
 
   const [testHabit, setTestHabit] = useState({
     id: 'test-almost-completed',
-    name: 'Test Habit - Almost Complete (Click Last Day!)',
+    name: 'Sleep Early',
     days: createHabitDates().map((date, i) => ({
       day: i + 1,
       date: date,
@@ -114,7 +114,7 @@ export default function Test() {
           <h3
             style={{ color: '#e6edf3', marginBottom: '12px', fontSize: '16px' }}
           >
-            Test Scenario 2: Perfect 21-Day Completion
+            Run 5kms 
           </h3>
           <p style={{ color: '#7d8590', fontSize: '14px', lineHeight: '1.6' }}>
             This habit is fully completed (100%) and shows the celebration
