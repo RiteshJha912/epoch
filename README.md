@@ -22,7 +22,7 @@
 </p>
 
 
-<h3 align="center">View Downloaded Certificates in PNG Format</h3>
+<h4 align="center">View Downloaded Certificates in PNG Format or share them directly into your network! </h4>
 
 <p align="center">
   <img src="./public/screenshots/8.png" width="600" alt="Screenshot 8"/>
