@@ -10,7 +10,7 @@ export default function Footer() {
             <span>Made with</span>
             <Heart className={styles.heartIcon} size={16} />
             <span>
-              by <strong>Ritesh</strong>
+              by <strong>Ritzardous</strong>
             </span>
           </div>
 

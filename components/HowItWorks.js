@@ -28,7 +28,8 @@ export default function HowItWorks() {
                 <div className={styles.mockHabitList}>
                   <div className={styles.mockHabit}>Daily Exercise</div>
                   <div className={styles.mockHabit}>Read 30 min</div>
-                  <div className={styles.mockHabit}>Drink 8 glasses</div>
+                  <div className={styles.mockHabit}>Quit Smoking</div>
+                  <div className={styles.mockHabit}>Sleep @ 8pm</div>
                 </div>
               </div>
             </div>
@@ -87,8 +88,9 @@ export default function HowItWorks() {
             <div className={styles.stepContent}>
               <h3 className={styles.stepTitle}>Earn & Share</h3>
               <p className={styles.stepDescription}>
-                Maintain 80%+ consistency to unlock your custom certificate.
-                Share your achievement and inspire others.
+                Maintain 80%+ consistency to unlock your personalized
+                certificate with your name on it. Share your achievement and
+                inspire others.
               </p>
               <div className={styles.stepVisual}>
                 <div className={styles.mockCertificate}>

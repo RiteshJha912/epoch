@@ -1,7 +1,15 @@
-# epoch 
-Epoch turns habit-building into a visual journey, transforming consistency into lasting progress with a GitHub-style contribution graph.
+# epoch
 
-## View Live : https://epoch-ruby.vercel.app/
+> Build habits that actually stick — a minimal, open-source habit tracker with a GitHub-inspired contributions graph.
+
+[![Made with Next.js](https://img.shields.io/badge/Made%20with-Next.js-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Firebase](https://img.shields.io/badge/Backend-Firebase-orange?logo=firebase)](https://firebase.google.com/)
+
+
+---
+
+## View Live : https://epoch-daily.vercel.app/
 
 
 ## Project Structure
@@ -48,3 +56,16 @@ roooooooot/
 
 ```
 
+## Tech Stack
+
+Frontend: Next.js, React, Vanilla CSS
+
+Backend: Firebase (Auth, Firestore, Push Notifs(maybe later))
+
+Hosting: Vercel
+
+---
+If you find this project useful, don’t forget to star ⭐ the repo!
+---
+
+## Made with ❤️ by Ritesh
