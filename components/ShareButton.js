@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { auth } from '../lib/firebase'
 import styles from '../styles/components/ShareButton.module.css'
 
 export default function ShareButton({ habit, completedDays, totalDays }) {
@@ -11,6 +12,13 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
   const isShareWorthy = () => {
     const milestones = [7, 14, 21]
     return milestones.includes(totalDays) && completionPercentage >= 80
+  }
+
+  // Get user name directly from Firebase auth
+  const getUserName = () => {
+    const user = auth.currentUser
+    if (!user) return null
+    return user.displayName || user.email?.split('@')[0] || null
   }
 
   // Generate achievement image
@@ -52,6 +60,18 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
       ctx.fillStyle = '#7d8590'
       ctx.font = '32px Arial, sans-serif' // Increased from 24px
       ctx.fillText('Consitency Builder', canvas.width / 2, 170)
+
+      // Add user name subtly in top right corner
+      const userName = getUserName()
+      if (userName) {
+        ctx.fillStyle = 'rgba(88, 166, 255, 0.8)' // Slightly blue and more visible
+        ctx.font = 'italic 32px Georgia, serif'
+        ctx.textAlign = 'right'
+        const displayName =
+          userName.length > 15 ? userName.substring(0, 15) + '...' : userName
+        ctx.fillText(displayName, canvas.width - 50, 50)
+        ctx.textAlign = 'center' // Reset alignment
+      }
 
       // Achievement emoji (larger)
       ctx.font = '150px Arial, sans-serif' // Increased from 120px

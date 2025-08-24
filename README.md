@@ -8,10 +8,11 @@ Epoch turns habit-building into a visual journey, transforming consistency into 
 ```
 roooooooot/
 ├── components/
-│   ├── AddHabitModal.js
+│   ├── AddHabitModal.
+│   ├── Footer.js
 │   ├── HabitGrid.js
-│   ├── Layout.js
 │   ├── HowItWorks.js
+│   ├── Layout.js
 │   ├── ShareButton.js
 │
 ├── lib/
@@ -30,9 +31,10 @@ roooooooot/
 ├── styles/
 │   ├── components/
 │   │   ├── AddHabitModal.module.css
+│   │   ├── Footer.module.css
 │   │   ├── HabitGrid.module.css
-│   │   ├── Layout.module.css
 │   │   ├── HowItWorks.module.css
+│   │   ├── Layout.module.css
 │   │   ├── ShareButton.module.css
 │   │
 │   ├── pages/

@@ -201,6 +201,13 @@ export default function Home() {
     0
   )
 
+  // Get user's display name for the certificates
+  const getUserDisplayName = () => {
+    if (!user) return 'Anonymous'
+    // Use the same logic as Layout.js for consistency
+    return user.displayName || user.email?.split('@')[0] || 'Anonymous'
+  }
+
   return (
     <Layout>
       <div className='glass' style={{ padding: '32px' }}>

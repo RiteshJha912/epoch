@@ -3,7 +3,7 @@
  * It displays the progress of a habit in a format similar to a GitHub contributions graph.
  *
  * Key functionalities:
- * - **Props:** It receives a `habit` object, and two callback functions, `onDayClick` and `onDelete`, from the parent component (`pages/index.js`).
+ * - **Props:** It receives a `habit` object, `userName`, and two callback functions, `onDayClick` and `onDelete`, from the parent component (`pages/index.js`).
  * - **Dynamic Styling:** Determines the CSS grid layout (`grid-7`, `grid-14`, or `grid-21`) based on the habit's duration.
  * - **Progress and Statistics:** Calculates and displays the completion percentage and the number of days completed out of the total duration.
  * - **Habit Day Rendering:** Maps through the `habit.days` array to render a square for each day. Each square's appearance (color, content) is determined by its status (`completed`, `today`, `missed`, `future`), which is calculated using the `getDayStatus` utility function.
