@@ -15,6 +15,17 @@
 import { useState } from 'react'
 import styles from '../styles/components/AddHabitModal.module.css'
 
+const commonHabits = [
+  'Drink 8 glasses of water',
+  'Read for 10 minutes',
+  'Go for a walk',
+  'Meditate for 5 minutes',
+  'No Junk',
+  'Journal',
+  'Sleep for 7+ hours',
+  'Quit Smoking'
+]
+
 export default function AddHabitModal({ isOpen, onClose, onAdd }) {
   const [habitName, setHabitName] = useState('')
   const [duration, setDuration] = useState('3weeks')
@@ -43,6 +54,11 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
     if (e.target === e.currentTarget) {
       onClose()
     }
+  }
+
+  // New function to handle suggestion clicks
+  const handleSuggestionClick = (habit) => {
+    setHabitName(habit)
   }
 
   if (!isOpen) return null
@@ -76,6 +92,29 @@ export default function AddHabitModal({ isOpen, onClose, onAdd }) {
           Choose something small and specific. Consistency beats intensity every
           time.
         </p>
+
+        {/* New section for suggested habits */}
+        <div style={{ marginBottom: '24px' }}>
+          <p
+            style={{ color: '#c9d1d9', fontSize: '14px', marginBottom: '8px' }}
+          >
+            Popular suggestions:
+          </p>
+          <div className={styles.suggestionGrid}>
+            {commonHabits.map((habit, index) => (
+              <button
+                key={index}
+                type='button'
+                className={styles.suggestionButton}
+                onClick={() => handleSuggestionClick(habit)}
+              >
+                {habit}
+              </button>
+            ))}
+          </div>
+        </div>
+        {/* End of new section */}
+
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
             <label>What habit do you want to build?</label>

@@ -93,3 +93,28 @@
         padding: 24px;
     }
 }
+
+
+/* New styles for habit suggestions */
+.suggestionGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.suggestionButton {
+    background-color: #21262d;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.suggestionButton:hover {
+    background-color: #30363d;
+    border-color: #444c56;
+}
