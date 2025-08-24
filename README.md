@@ -14,18 +14,11 @@
 
 <p align="center">
   <img src="./public/screenshots/1.png" width="600" alt="Screenshot 1"/>
-  <!-- <br/>
-  <img src="./public/screenshots/2.png" width="600" alt="Screenshot 2"/> -->
-  <br/>
-  <img src="./public/screenshots/3.png" width="600" alt="Screenshot 3"/>
   <br/>
   <img src="./public/screenshots/4.png" width="600" alt="Screenshot 4"/>
   <br/>
-  <img src="./public/screenshots/5.png" width="600" alt="Screenshot 5"/>
-  <br/>
   <img src="./public/screenshots/6.png" width="600" alt="Screenshot 6"/>
   <br/>
-  <img src="./public/screenshots/7.png" width="600" alt="Screenshot 7"/>
 </p>
 
 
