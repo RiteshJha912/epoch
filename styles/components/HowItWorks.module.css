@@ -1,0 +1,467 @@
+/* How It Works Component Styles */
+
+.howItWorksSection {
+    margin-top: -2rem;
+    padding: 5rem 0;
+    background: rgb(13, 12, 12);
+    border-top: 1px solid #21262d;
+    border-radius: 50px;
+    border: 2px dashed white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #e6edf3;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: #7d8590;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Journey Flow */
+.journeyFlow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+}
+
+.step {
+    flex: 1;
+    max-width: 300px;
+    min-width: 280px;
+    text-align: center;
+}
+
+.stepNumber {
+    width: 48px;
+    height: 48px;
+    background: #238636;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
+}
+
+.stepContent {
+    background: rgba(22, 27, 34, 0.6);
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.stepContent:hover {
+    border-color: #238636;
+    background: rgba(22, 27, 34, 0.8);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.stepTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e6edf3;
+    margin-bottom: 1rem;
+}
+
+.stepDescription {
+    font-size: 0.95rem;
+    color: #8b949e;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Step Visuals */
+.stepVisual {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Mock Habit List */
+.mockHabitList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 160px;
+}
+
+.mockHabit {
+    background: #0d1117;
+    border: 1px solid #238636;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    color: #e6edf3;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.mockHabit:hover {
+    background: rgba(35, 134, 54, 0.1);
+    border-color: #2ea043;
+}
+
+/* Mock Tracker - Improved Animation */
+.mockTracker {
+    padding: 1rem;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+}
+
+.trackerWeek {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+}
+
+.trackerDay {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background: #161b22;
+    animation: lightUp 3.5s infinite;
+}
+
+@keyframes lightUp {
+
+    0%,
+    85%,
+    100% {
+        background: #161b22;
+        box-shadow: none;
+        transform: scale(1);
+    }
+
+    15%,
+    80% {
+        background: #238636;
+        box-shadow: 0 0 8px rgba(35, 134, 54, 0.6);
+        transform: scale(1.05);
+    }
+}
+
+/* Mock Certificate - Redesigned */
+.mockCertificate {
+    background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+    border: 2px solid #238636;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    color: #e6edf3;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(35, 134, 54, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: subtleGlow 4s ease-in-out infinite;
+    max-width: 220px;
+}
+
+.mockCertificate::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(35, 134, 54, 0.1), transparent);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+@keyframes subtleGlow {
+
+    0%,
+    100% {
+        border-color: #238636;
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(35, 134, 54, 0.1);
+    }
+
+    50% {
+        border-color: #2ea043;
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, 0.3),
+            0 0 20px rgba(35, 134, 54, 0.2),
+            0 0 0 1px rgba(35, 134, 54, 0.2);
+    }
+}
+
+.certificateHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.certificateIcon {
+    color: #238636;
+    stroke-width: 2.5;
+}
+
+.certificateTitle {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #238636;
+}
+
+.certificateBody {
+    position: relative;
+    z-index: 1;
+}
+
+.habitName {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #e6edf3;
+    margin-bottom: 0.25rem;
+}
+
+.completionRate {
+    font-size: 0.7rem;
+    color: #7d8590;
+    font-weight: 500;
+}
+
+/* Arrow */
+.arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    /* animation: bounce 2s infinite; */
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+/* Benefits */
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.benefitCard {
+    background: rgba(22, 27, 34, 0.4);
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.benefitCard:hover {
+    border-color: #238636;
+    background: rgba(22, 27, 34, 0.7);
+    transform: translateY(-2px);
+}
+
+/* Benefits - Updated for Icons */
+.benefitIcon {
+    color: #238636;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.benefitTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #e6edf3;
+    margin-bottom: 1rem;
+}
+
+.benefitText {
+    font-size: 0.95rem;
+    color: #8b949e;
+    line-height: 1.6;
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(35, 134, 54, 0.05);
+    border: 1px solid rgba(35, 134, 54, 0.2);
+    border-radius: 4px;
+}
+
+.ctaText {
+    font-size: 1.125rem;
+    color: #8b949e;
+    margin-bottom: 0.5rem;
+}
+
+.ctaHighlight {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #238636;
+    letter-spacing: -0.01em;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 968px) {
+    .journeyFlow {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .arrow {
+        transform: rotate(90deg);
+        margin: 0;
+    }
+
+    .step {
+        max-width: 400px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .howItWorksSection {
+        padding: 3rem 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .stepContent {
+        padding: 1.5rem 1rem;
+    }
+
+    .stepTitle {
+        font-size: 1.25rem;
+    }
+
+    .stepDescription {
+        font-size: 0.9rem;
+    }
+
+    .benefits {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .benefitCard {
+        padding: 1.5rem;
+    }
+
+    .cta {
+        padding: 2rem 1.5rem;
+    }
+
+    .ctaText {
+        font-size: 1rem;
+    }
+
+    .ctaHighlight {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mockHabitList {
+        min-width: 140px;
+    }
+
+    .mockHabit {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .trackerDay {
+        width: 14px;
+        height: 14px;
+    }
+
+    .mockCertificate {
+        padding: 1rem 0.75rem;
+    }
+
+    .certificateIcon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .certificateTitle {
+        font-size: 0.75rem;
+    }
+
+    .habitName {
+        font-size: 0.7rem;
+    }
+
+    .completionRate {
+        font-size: 0.65rem;
+    }
+}

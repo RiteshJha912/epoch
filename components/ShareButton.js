@@ -47,7 +47,7 @@ export default function ShareButton({ habit, completedDays, totalDays }) {
       ctx.fillStyle = '#238636'
       ctx.font = 'bold 64px Arial, sans-serif' // Increased from 48px
       ctx.textAlign = 'center'
-      ctx.fillText('EPOCH', canvas.width / 2, 120)
+      ctx.fillText('epoch', canvas.width / 2, 120)
 
       ctx.fillStyle = '#7d8590'
       ctx.font = '32px Arial, sans-serif' // Increased from 24px

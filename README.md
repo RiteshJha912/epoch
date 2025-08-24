@@ -11,6 +11,8 @@ roooooooot/
 │   ├── AddHabitModal.js
 │   ├── HabitGrid.js
 │   ├── Layout.js
+│   ├── HowItWorks.js
+│   ├── ShareButton.js
 │
 ├── lib/
 │   ├── firebase.js
@@ -30,6 +32,8 @@ roooooooot/
 │   │   ├── AddHabitModal.module.css
 │   │   ├── HabitGrid.module.css
 │   │   ├── Layout.module.css
+│   │   ├── HowItWorks.module.css
+│   │   ├── ShareButton.module.css
 │   │
 │   ├── pages/
 │   │   ├── index.module.css

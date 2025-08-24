@@ -93,6 +93,24 @@
     animation: none;
 }
 
+/* Today's state when completed - no hover effects */
+.habitDay.today.completed {
+    background: #238636;
+    border-color: #2ea043;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 0 0 1px rgba(35, 134, 54, 0.2);
+    cursor: default;
+    animation: none;
+}
+
+.habitDay.today.completed:hover {
+    background: #238636;
+    border-color: #2ea043;
+    transform: none;
+    box-shadow: 0 0 0 1px rgba(35, 134, 54, 0.2);
+}
+
 /* Missed state - red like GitHub's no contribution */
 .habitDay.missed {
     background: #21262d;

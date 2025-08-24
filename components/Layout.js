@@ -168,7 +168,7 @@ export default function Layout({ children }) {
                         fontSize: '12px',
                       }}
                     >
-                      Keep growing!
+                      Keep accelerating!
                     </div>
                   </div>
                 </div>

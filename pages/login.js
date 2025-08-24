@@ -17,6 +17,8 @@ import { useState } from 'react'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, googleProvider } from '../lib/firebase'
 import { useRouter } from 'next/router'
+import HowItWorks from '../components/HowItWorks'
+import Footer from '../components/Footer' 
 import styles from '../styles/pages/login.module.css'
 
 export default function Login() {
@@ -115,6 +117,9 @@ export default function Login() {
           </div>
         </div>
 
+        {/* How It Works Section */}
+        <HowItWorks />
+
         {/* Stats Section */}
         <div className={styles.statsSection}>
           <h2 className={styles.statsTitle}>Why habit tracking works</h2>
@@ -183,7 +188,10 @@ export default function Login() {
             </p>
           </div>
         </div>
+        <Footer />
       </div>
+
+      {/* Footer - Add this at the bottom */}
     </div>
   )
 }

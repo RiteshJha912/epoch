@@ -1,0 +1,206 @@
+/* Footer Component Styles */
+
+.footer {
+    background: rgba(13, 17, 23, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(48, 54, 61, 0.3);
+    padding: 1.5rem 0;
+    margin-top: auto;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(35, 134, 54, 0.3) 20%,
+            rgba(35, 134, 54, 0.6) 50%,
+            rgba(35, 134, 54, 0.3) 80%,
+            transparent);
+}
+
+.footerContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: #7d8590;
+}
+
+.madeWithLove {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 400;
+}
+
+.madeWithLove strong {
+    color: #e6edf3;
+    font-weight: 600;
+    position: relative;
+}
+
+.madeWithLove strong::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #238636, #39d353);
+    border-radius: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.madeWithLove:hover strong::after {
+    opacity: 1;
+}
+
+.heartIcon {
+    color: #f85149;
+    animation: heartbeat 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px rgba(248, 81, 73, 0.3));
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    14% {
+        transform: scale(1.1);
+    }
+
+    28% {
+        transform: scale(1);
+    }
+
+    42% {
+        transform: scale(1.1);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+}
+
+.divider {
+    color: #30363d;
+    font-weight: bold;
+    user-select: none;
+}
+
+.githubLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #7d8590;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(22, 27, 34, 0.3);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.githubLink::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(35, 134, 54, 0.1),
+            transparent);
+    transition: left 0.5s ease;
+}
+
+.githubLink:hover {
+    color: #e6edf3;
+    border-color: rgba(35, 134, 54, 0.3);
+    background: rgba(35, 134, 54, 0.05);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(35, 134, 54, 0.1);
+}
+
+.githubLink:hover::before {
+    left: 100%;
+}
+
+.githubLink:hover .starIcon {
+    color: #ffd700;
+    animation: sparkle 0.6s ease-out;
+    filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.2) rotate(180deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+.starIcon {
+    transition: all 0.3s ease;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+    .footerContainer {
+        padding: 0 1rem;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .githubLink {
+        padding: 0.75rem 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 1.25rem 0;
+    }
+
+    .content {
+        font-size: 0.8rem;
+    }
+
+    .madeWithLove {
+        gap: 0.3rem;
+    }
+}
