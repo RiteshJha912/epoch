@@ -20,7 +20,6 @@ const commonHabits = [
   'No Junk',
   'Journal',
   'Sleep for 7 hrs',
-  'Quit Smoking'
 ]
 
 export default function AddHabitModal({ isOpen, onClose, onAdd }) {
