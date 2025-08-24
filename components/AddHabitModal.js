@@ -16,13 +16,10 @@ import { useState } from 'react'
 import styles from '../styles/components/AddHabitModal.module.css'
 
 const commonHabits = [
-  'Drink 8 glasses of water',
-  'Read for 10 minutes',
   'Go for a walk',
-  'Meditate for 5 minutes',
   'No Junk',
   'Journal',
-  'Sleep for 7+ hours',
+  'Sleep for 7 hrs',
   'Quit Smoking'
 ]
 
