@@ -69,7 +69,7 @@ roooooooot/
 │   ├── Home.module.css
 │   ├── globals.css
 │
-└── README.md   (You are reading this!)
+└── README.md  
 
 ```
 
