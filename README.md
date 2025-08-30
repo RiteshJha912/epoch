@@ -2,10 +2,6 @@
 
  Build habits that actually stick : a minimal, open-source habit tracker with a GitHub-inspired contributions graph.
 
-[![Made with Next.js](https://img.shields.io/badge/Made%20with-Next.js-black?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react&logoColor=white)](https://react.dev/)
-[![Firebase](https://img.shields.io/badge/Backend-Firebase-orange?logo=firebase)](https://firebase.google.com/)
-
 ---
 
 ## View Live : https://epoch-daily.vercel.app/
